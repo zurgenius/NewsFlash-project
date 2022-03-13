@@ -1,0 +1,531 @@
+/* Importing fonts. In this template Poppins font family is mostly used */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+/* Variables used in original tutorial */
+:root {
+  --light-color: #fff;
+  --light-color-alt: #afb6cd;
+  --primary-backgorund-color: #131417;
+  --secondary-background-color: #252830;
+  --hover-light-color: var(--light-color);
+  --hover-dark-color: var(--primary-backgorund-color);
+  --gradient-color: linear-gradient(
+    115deg,
+    #4fcf70,
+    #fad648,
+    #a767e5,
+    #12bcfe,
+    #44ce7b
+  );
+  --transparent-light-color: rgba(255, 255, 255, 0.05);
+  --transparent-dark-color: rgba(0, 0, 0, 0.75);
+  --font-family: "Poppins", sans-serif;
+  --font-size-xsmall: 1.2rem;
+  --font-size-small: 1.6rem;
+  --font-size-medium: 2.4rem;
+  --font-size-large: 3rem;
+  --font-size-xlarge: 4rem;
+  --gap: 2rem;
+  --margin-sm: 2rem;
+  --margin-md: 3rem;
+  --item-min-height-sm: 20rem;
+  --item-min-height-md: 30rem;
+  /* My own variables for light theme optimization */
+  --article-text-color-hover: white;
+  --artbcc: var(--transparent-dark-color);
+  --article-text-color: var(--light-color-alt);
+  --article-title-color: #fff;
+  --article-span: #fff;
+}
+
+/* Basic styles */
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  color: var(--light-color-alt);
+  background-color: var(--primary-backgorund-color);
+  letter-spacing: 1px;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  min-width: 100%;
+
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+input,
+button {
+  font: inherit;
+  color: inherit;
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+
+i {
+  font-size: var(--font-size-medium);
+}
+
+/* Theme changing */
+
+body.light-theme {
+  /* Setting variables of colours to match light theme */
+  --light-color: #3d3d3d;
+  --light-color-alt: rgba(0, 0, 0, 0.6);
+  --primary-backgorund-color: #fff;
+  --secondary-background-color: #f1f1f1;
+  --transparent-light-color: #252830;
+  --transparent-dark-color: rgba(0, 0, 0, 0.1);
+  --hover-light-color: #fff;
+  --hover-dark-color: #fff;
+  --article-text-color-hover: #000;
+  --artbcc: rgba(255, 255, 255, 0.75);
+  --article-text-color: rgba(0, 0, 0, 0.9);
+  --article-title-color: #000;
+  --article-span: #000;
+}
+.light-theme.current {
+  color: black !important;
+}
+.light-theme.current:hover {
+  color: black;
+  transition: color 0.25s;
+}
+
+/* Reusable classes */
+
+.container {
+  max-width: 160rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.place-items-center {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Items which are going to be hidden on small screens */
+.screen-sm-hidden {
+  display: none;
+}
+
+.d-grid {
+  display: grid;
+}
+.section {
+  padding-block: 5rem;
+}
+/* Header */
+
+.header {
+  background-color: var(--secondary-background-color);
+  position: fixed;
+  top: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1.5rem;
+}
+
+.logo {
+  font-size: var(--font-size-medium);
+  color: var(--light-color);
+}
+
+/* Working with menu and its elements */
+.menu {
+  position: absolute;
+  top: 8.5rem;
+  right: 1.5rem;
+  width: 23rem;
+  padding: 1.5rem;
+  background-color: var(--secondary-background-color);
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.25s ease-in;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+}
+
+.menu > .list {
+  flex-direction: column;
+}
+
+.list-link.current {
+  color: var(--light-color);
+}
+
+.close-menu-icon {
+  display: none;
+}
+
+.btn {
+  cursor: pointer;
+}
+.list-link:hover,
+.btn:hover,
+.btn:hover span {
+  color: var(--light-color);
+  transition: color 0.25s;
+}
+.moon-icon {
+  display: none;
+}
+/* ========== */
+/* toggling theme changing icons to change according to theme */
+.light-theme .sun-icon {
+  display: none;
+}
+
+.light-theme .moon-icon {
+  display: block;
+}
+
+/* Header and menu js styles */
+
+.header.activated {
+  box-shadow: 0 1px 0.5rem var(--transparent-light-color);
+}
+
+.menu.activated {
+  box-shadow: 1px 1px 1rem var(--transparent-light-color);
+  opacity: 1;
+  transform: scale(1);
+}
+
+#menu-toggle-icon.activated .open-menu-icon {
+  display: none;
+}
+#menu-toggle-icon.activated .close-menu-icon {
+  display: block;
+}
+
+/* Search window elems */
+.search-form-container {
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  background-color: var(--primary-backgorund-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  display: flex;
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.5s;
+}
+/* Styling every button in search fform except of closing one */
+.form-container-inner {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  text-align: center;
+}
+.form {
+  display: flex;
+  justify-content: center;
+}
+
+.form-input,
+.form-btn {
+  display: inline-block;
+  border: 2px solid var(--secondary-background-color);
+  padding: 1.5rem;
+}
+
+.form-input {
+  border-right: none;
+  width: 100%;
+}
+
+.form-btn {
+  margin-left: -0.5rem;
+  border-left: none;
+  background-color: var(--secondary-background-color);
+  width: 8rem;
+}
+.form-note {
+  font-size: var(--font-size-xsmall);
+}
+/* Styling form closing button */
+.form-close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 4rem;
+  height: 4rem;
+  border: 2px solid var(--secondary-background-color);
+}
+
+/* Search window js styles prep */
+
+.search-form-container.activated {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* =================== */
+
+/* Featured articles */
+
+.featured-articles {
+  /* Real distance from header */
+  padding-block: 2rem;
+}
+/* Articles setted off from header to fix overflow*/
+.section-header-offset {
+  margin-top: 7.4rem;
+}
+
+.featured-articles-container,
+.featured-content {
+  gap: var(--gap);
+}
+
+.headline-banner {
+  display: flex;
+  background-color: var(--secondary-background-color);
+  align-items: center;
+  gap: var(--gap);
+  font-size: var(--font-size-xsmall);
+}
+
+.headline {
+  color: var(--light-color);
+  font-size: 1rem;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0.4rem;
+  height: 100%;
+}
+
+.headline span {
+  height: inherit;
+}
+
+.fancy-border {
+  position: relative;
+  overflow: hidden;
+}
+
+.fancy-border::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* We put width 200% to strech gradient for it to be a single instance but not be repeated just twice */
+  width: 200%;
+  height: 100%;
+  background: var(--gradient-color);
+  background-size: 50% 100%;
+  z-index: 5;
+}
+
+.fancy-border span {
+  position: relative;
+  z-index: 10;
+  display: inline-flex;
+  padding: 0.6rem 1.5rem;
+  background-color: var(--secondary-background-color);
+}
+
+.article {
+  position: relative;
+  min-height: var(--item-min-height-md);
+}
+
+.article-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s;
+}
+
+.article-category {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 1rem;
+  font-size: 1rem;
+  background-color: var(--primary-backgorund-color);
+  color: var(--light-color);
+  text-transform: uppercase;
+  z-index: 10;
+}
+
+.article-data-container {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding: 2rem 1.5rem;
+  background-color: var(--artbcc);
+  z-index: 10;
+  width: 100%;
+  transition: background-color 0.5s;
+}
+/* Optimization of hovewring on article */
+.article:hover .article-data-container {
+  background-color: var(--hover-dark-color);
+}
+
+.article:hover .article-data {
+  color: var(--article-text-color-hover);
+}
+
+.article:hover .article-title {
+  color: var(--article-text-color-hover);
+  transition: color 0.25s ease-in;
+}
+.article:hover .article-data-spacer {
+  background-color: var(--article-text-color-hover);
+  transition: background-color 0.25s ease-in;
+}
+
+/* Placing info about article in the proper order */
+.article-data {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  font-size: var(--font-size-xsmall);
+  margin-bottom: 1rem;
+  color: var(--article-text-color);
+}
+
+.article-data-spacer {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: var(--article-span);
+  transform: rotate(45deg);
+}
+
+.title {
+  color: var(--article-title-color);
+}
+
+.article-title {
+  font-size: var(--font-size-medium);
+}
+/* Sidebar and tending news */
+.sidebar {
+  background-color: var(--secondary-background-color);
+  padding: 2.5rem;
+}
+.trending-news-bxo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  padding-block: 2rem;
+  border: 1px solid --transparent-dark-color;
+}
+
+.trending-news-bxo:last-of-type {
+  border-bottom: none;
+}
+
+.trending-news-image-box {
+  position: relative;
+  width: 100%;
+  height: var(--item-min-height-sm);
+}
+.featured-content-title {
+  font-size: var(--font-size-medium);
+  text-align: center;
+  padding: 1rem;
+}
+
+.trending-number {
+  position: absolute;
+  top: -1rem;
+  left: -1rem;
+  z-index: 15;
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--secondary-background-color);
+  color: var(--light-color);
+  border-radius: 50%;
+}
+
+.trending-news-data .article-title {
+  font-size: var(--font-size-small);
+}
+
+.trending-news-box:hover .article-title {
+  color: var(--light-color-alt);
+}
+
+/* Quick read */
+.section-title {
+  position: relative;
+  font-size: var(--font-size-medium);
+  margin-bottom: 6rem;
+}
+.section-title::before {
+  content: attr(data-name);
+  font-size: var(--font-size-large);
+  text-transform: uppercase;
+  opacity: 0.1;
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+}
+
+.article.swiper-slide {
+  height: 40rem;
+}
+/* Swiper styles */
+.swiper-wrapper {
+  height: auto;
+}
+
+.swiper-controls {
+  width: 3.5rem !important;
+  height: 3.5rem !important;
+  background-color: var(--secondary-background-color);
+}
+
+.swiper-controls::after {
+  font-size: 1.6rem !important;
+  color: var(--light-color);
+}
+
+.swiper-pagination {
+  bottom: 0.5rem !important;
+}
+
+.swiper-pagination-bullet {
+  background-color: var(--light-color) !important;
+}
