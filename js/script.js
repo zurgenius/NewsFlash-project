@@ -8,13 +8,7 @@ const selectElem = selector => {
     throw new Error(`Something wwent wrong, make sure that ${selector} exist or is typed correctly`)
 }
 
-const selectAll = selector => {
-    const elem = document.querySelectorAll(selector)
-    if (elem) {
-        return elem
-    }
-    throw new Error ("Something went wrong")
-}
+
 
 // Styling navbar when scroll 
 const scrollHeader = () => {

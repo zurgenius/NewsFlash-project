@@ -35,6 +35,11 @@
   --article-text-color: var(--light-color-alt);
   --article-title-color: #fff;
   --article-span: #fff;
+  --tagname-color: var(--light-color-alt);
+  --tagname-bcc: var(--transparent-dark-color);
+  --tagname-hover: #fff;
+  /* Variable to fix issue that links got incorrect color when switching themes because anker tag color property was set to inherit and when body gets new class of light-theme anker tag inherits incorrect color as I understood. Doesn't really matter as this variable fiex the issue */
+  --a-color: #afb6cd;
 }
 
 /* Basic styles */
@@ -60,12 +65,12 @@ body {
 
 a {
   text-decoration: none;
-  color: inherit;
+  /* Variable to fix issue that links got incorrect color when switching themes because anker tag color property was set to inherit and when body gets new class of light-theme anker tag inherits incorrect color as I understood. Doesn't really matter as this variable fiex the issue */
+  color: var(--a-color);
 }
 
 img {
-  min-width: 100%;
-
+  max-width: 100%;
   display: block;
 }
 
@@ -98,11 +103,19 @@ body.light-theme {
   --transparent-dark-color: rgba(0, 0, 0, 0.1);
   --hover-light-color: #fff;
   --hover-dark-color: #fff;
+  /* My own variables for light theme optimization */
+  /* Article light theme optimization for first section */
   --article-text-color-hover: #000;
   --artbcc: rgba(255, 255, 255, 0.75);
   --article-text-color: rgba(0, 0, 0, 0.9);
   --article-title-color: #000;
   --article-span: #000;
+  /* Tags light theme optimization */
+  --tagname-bcc: rgba(255, 255, 255, 0.75);
+  --tagname-color: #252830;
+  --tagname-hover: #000;
+  /* Variable to fix issue that links got incorrect color when switching themes because anker tag color property was set to inherit and when body gets new class of light-theme anker tag inherits incorrect color as I understood. Doesn't really matter as this variable fiex the issue */
+  --a-color: rgba(0, 0, 0, 0.6);
 }
 .light-theme.current {
   color: black !important;
@@ -534,8 +547,7 @@ body.light-theme {
 /* Older posts */
 
 .older-posts-grid-wrapper {
-  gap:var(--gap); 
-
+  gap: var(--gap);
 }
 
 .older-posts-article-image-wrapper,
@@ -550,7 +562,7 @@ body.light-theme {
   position: relative;
 }
 
-.older-posts-grid-wrapper .article-data-container{
+.older-posts-grid-wrapper .article-data-container {
   position: static;
   background-color: transparent;
 }
@@ -566,23 +578,23 @@ body.light-theme {
   text-transform: uppercase;
 }
 
-.see-more-btn i{
-  transition: transform .25s;
+.see-more-btn i {
+  transition: transform 0.25s;
 }
 
 .see-more-btn:hover i {
-  transform: translateX(.5rem);
+  transform: translateX(0.5rem);
 }
 
 /* Popular tags */
 
 .popular-tags-container {
-  gap:var(--gap);
+  gap: var(--gap);
 }
 
 .popular-tags-container .article {
-  min-height:var(--item-min-height-sm);
-  overflow: hidden; 
+  min-height: var(--item-min-height-sm);
+  overflow: hidden;
 }
 
 .tagname {
@@ -590,22 +602,169 @@ body.light-theme {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--transparent-dark-color);
+  background-color: var(--tagname-bcc);
+  color: var(--tagname-color);
   z-index: 10;
   padding: 1rem 2rem;
 }
 
 .popular-tags-container .article:hover .tagname {
-  color: var(--light-color);
+  color: var(--tagname-hover);
 }
 
 .popular-tags-container .article:hover .article-image {
-  transform: scale(1.5);
+  transform: scale(1.05);
 }
 
+/* Newsletter */
 
+.newsletter {
+  padding-bottom: 6rem;
+}
 
+.newsletter-title {
+  font-size: var(--font-size-large);
+}
 
+.newsletter-description {
+  margin-bottom: 3rem;
+}
 
+/* Footer */
+.footer {
+  background-color: var(--secondary-background-color);
+}
 
+.footer-container {
+  gap: var(--gap);
+}
 
+.company-data {
+  display: flex;
+  flex-direction: column;
+  order: 1;
+}
+
+.company-description {
+  margin-block: var(--margin-sm);
+  max-width: 75%;
+}
+
+.social-media {
+  margin-bottom: var(--margin-md);
+}
+
+.copyright-notice {
+  opacity: 0.8;
+}
+
+.footer-list {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-title {
+  font-size: var(--font-size-medium);
+  text-transform: uppercase;
+  margin-bottom: var(--margin-sm);
+}
+/* Scrollbar styles */
+
+::-webkit-scrollbar {
+  width: 1.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #3f4254;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #2e303b;
+}
+
+/* Blog post */
+
+.blog-post {
+  padding-bottom: 5rem;
+}
+
+.blog-post-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-block: 2.5rem;
+}
+
+.blog-post-title {
+  font-size: clamp(3rem, 5vw, 6rem);
+}
+
+.blog-post-data .article-data {
+  margin-bottom: 2.5rem;
+}
+
+.blog-post-data img {
+  width: 100%;
+  height: var(--item-min-height-sm);
+  object-fit: cover;
+  object-position: center 10%;
+}
+
+.blog-post-container .container {
+  max-width: 90rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.quote {
+  background-color: var(--secondary-background-color);
+  padding: 2.5rem;
+}
+
+.quote p {
+  font-style: italic;
+}
+
+.quote span i {
+  font-size: 3.5rem;
+}
+
+.author {
+  margin-top: 5rem;
+  gap: var(--gap);
+  background-color: var(--secondary-background-color);
+}
+
+.author-image-box {
+  position: relative;
+  height: 40rem;
+}
+
+.author-about {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.author-name {
+  color: var(--light-color);
+  font-weight: 400;
+}
+
+.author p {
+  max-width: 50rem;
+  margin-bottom: 1rem;
+}
+
+.author-about .social-media {
+  margin-top: auto;
+  margin-bottom: 0;
+}
