@@ -529,3 +529,83 @@ body.light-theme {
 .swiper-pagination-bullet {
   background-color: var(--light-color) !important;
 }
+
+/* ======================= */
+/* Older posts */
+
+.older-posts-grid-wrapper {
+  gap:var(--gap); 
+
+}
+
+.older-posts-article-image-wrapper,
+.older-posts .article {
+  min-height: var(--item-min-height-sm);
+}
+
+.older-posts .article {
+  background-color: var(--secondary-background-color);
+}
+.older-posts-article-image-wrapper {
+  position: relative;
+}
+
+.older-posts-grid-wrapper .article-data-container{
+  position: static;
+  background-color: transparent;
+}
+
+.older-posts-grid-wrapper .article-title {
+  margin-bottom: var(--margin-sm);
+}
+
+.see-more-container {
+  margin-top: var(--margin-md);
+}
+.see-more-btn {
+  text-transform: uppercase;
+}
+
+.see-more-btn i{
+  transition: transform .25s;
+}
+
+.see-more-btn:hover i {
+  transform: translateX(.5rem);
+}
+
+/* Popular tags */
+
+.popular-tags-container {
+  gap:var(--gap);
+}
+
+.popular-tags-container .article {
+  min-height:var(--item-min-height-sm);
+  overflow: hidden; 
+}
+
+.tagname {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--transparent-dark-color);
+  z-index: 10;
+  padding: 1rem 2rem;
+}
+
+.popular-tags-container .article:hover .tagname {
+  color: var(--light-color);
+}
+
+.popular-tags-container .article:hover .article-image {
+  transform: scale(1.5);
+}
+
+
+
+
+
+
+
