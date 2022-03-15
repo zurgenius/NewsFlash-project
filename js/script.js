@@ -75,7 +75,38 @@ window.addEventListener('keyup', (e) => {
     }
 })
 
-//  Light theme optimization
+// Sign in form toggle
+
+// Selecting elements to work with
+
+const sign_in = selectElem('#sign-in')
+const closeBtnSI = selectElem('#form-close-btn-1')
+const sign_inForm = selectElem('.sign-in-form-container')
+const sign_in1 = selectElem('#sign-in-1')
+
+console.log(sign_in)
+console.log(closeBtnSI)
+console.log(sign_inForm)
+console.log(sign_in1)
+
+// Event listener to open sign in window
+
+
+sign_in.addEventListener('click', () => {
+    sign_inForm.classList.add('activated')
+})
+
+// Event listener to close sign in window using btn 
+closeBtnSI.addEventListener('click', () => {
+    sign_inForm.classList.remove('activated')
+})
+// Event listener to close sign in window using esc key
+
+window.addEventListener('keyup', (e) => {
+    if(e.key === 'Escape') {
+        sign_inForm.classList.remove('activated')
+    }
+})
 
 // Swiper.js code 
 const swiper = new Swiper('.swiper', {
